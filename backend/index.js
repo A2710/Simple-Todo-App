@@ -65,6 +65,6 @@ app.put("/completed", async function(req, res){
     })
 })
 
-app.listen(port, function() {
+app.listen(3000, function() {
     console.log(`Example app listening on port http://localhost:3000/.`)
 })
