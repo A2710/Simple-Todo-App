@@ -38,15 +38,9 @@ app.get("/todos", async function(req, res){
     res.json({
         todos,
     })
-
-    await todo.update({
-        _id: req.body.id,
-    },{
-        completed: true
-    })
 })
 
-app.put("/completed", function(req, res){
+app.put("/completed", async function(req, res){
     const updatePayload = req.body();
     const parsedPayload = updateTodo.safeParse(updatePayload);
 
@@ -60,7 +54,15 @@ app.put("/completed", function(req, res){
     }
 
     //update it in mongo
+    await todo.update({
+        _id: req.body.id,
+    },{
+        completed: true
+    })
 
+    res.json({
+        msg: "Todo marked as completed"
+    })
 })
 
 app.listen(port, function() {
